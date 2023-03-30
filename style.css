@@ -4,9 +4,49 @@
     box-sizing: border-box;
 }
 
+
+
 body {
-    background-color: rgba(78, 78, 243, 0.849);
     display: grid;
+}
+
+body::after {
+    content: "";
+    background: url(images/bg.jpg);
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 90deg;
+    inherits: true;
+}
+
+@property --gradX {
+    syntax: '<percentage>';
+    initial-value: 50%;
+    inherits: true;
+}
+  
+@property --gradY {
+    syntax: '<percentage>';
+    initial-value: 0%;
+    inherits: true;
+}
+
+:root {
+    --d: 2500ms;
+    --angle: 90deg;
+    --gradX: 100%;
+	--gradY: 50%;
+	--c1: rgb(4, 6, 32);
+	--c2: rgba(168, 239, 255, 0.1);
 }
 
 #wrapper {
@@ -18,24 +58,78 @@ body {
 }
 
 #calculator-body {
-    border: 2px solid red;
-    max-width: 300px;
+    max-width: 500px;
     width: 100%;
-    
+    padding: 20px;
+    background-color: #3d444a;
+    border: 4px solid black;
+    border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, 
+    var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+	animation: borderRotate var(--d) linear infinite forwards;
+
 }
 
-#calculator-result {
-    padding: 1rem;
-    width: 100%;
+#calculator-body:nth-child(2) {
+    border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), 
+    var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
+	animation: borderRadial var(--d) linear infinite forwards;
+}
+
+@keyframes borderRotate {
+	100% {
+		--angle: 420deg;
+	}
+}
+
+@keyframes borderRadial {
+	20% {
+		--gradX: 100%;
+		--gradY: 50%;
+	}
+	40% {
+		--gradX: 100%;
+		--gradY: 100%;
+	}
+	60% {
+		--gradX: 50%;
+		--gradY: 100%;
+	}
+	80% {
+		--gradX: 0%;
+		--gradY: 50%;
+	}
+	100% {
+		--gradX: 50%;
+		--gradY: 0%;
+	}
+}
+
+#calculator-output {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+#calculator-data {
+    padding: 0.5rem;
+    width: 80%;
     border-radius: 1rem;
     font-size: 30px;
+    background-color: rgb(133, 171, 115);
+    color: black;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-#calculator-operators {
+#calculator-buttons {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     height: 100%;
-    grid-gap: 20px;
+    grid-gap: 10px;
+    background-color: #3d444a;
+    padding: 15px 15px;
 }
 
 .operators {
@@ -43,7 +137,32 @@ body {
     padding: 2px auto;
     font-weight: bold;
     cursor: pointer;
-    background-color: black;
+    background-color: rgb(100, 100, 100);
     color: white;
+    width: 70px;
+    height: 50px;
+    transition: 0.3s;
+    border-radius: 15px;
+}
 
+.operators:hover {
+    background-color: aliceblue;
+    color: black;
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+
+}
+
+#delete:hover, 
+#clear:hover {
+    background-color: rgb(255, 1, 1);
+    color: white;
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+
+}
+
+#delete, #clear {
+    background-color: rgb(158, 23, 23);
+    transition: 0.3s;
 }

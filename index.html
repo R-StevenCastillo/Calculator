@@ -6,34 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="practice.scss">
 </head>
 <body>
     <div id="wrapper">
         <div id="calculator-body">
-            <div id="calculator-result">
-                0
+            <div id="calculator-output">
+                <div id="calculator-data">
+                    0
+                </div>
             </div>
-            <div id="calculator-operators">
-                <div class="operators">7</div>
-                <div class="operators">8</div>
-                <div class="operators">9</div>
-                <div class="operators">DEL</div>
-                <div class="operators">AC</div>
-                <div class="operators">4</div>
-                <div class="operators">5</div>
-                <div class="operators">6</div>
-                <div class="operators">x</div>
-                <div class="operators">÷</div>
-                <div class="operators">1</div>
-                <div class="operators">2</div>
-                <div class="operators">3</div>
-                <div class="operators">+</div>
-                <div class="operators">-</div>
-                <div class="operators">0</div>
-                <div class="operators">.</div>
-                <div class="operators">EXP</div>
-                <div class="operators">Ans</div>
-                <div class="operators">=</div>
+            <div id="calculator-buttons">
+                <button class="operators" value="7" id="seven">7</button>
+                <button class="operators" value="8" id="eight">8</button>
+                <button class="operators" value="9" id="nine">9</button>
+                <button class="operators" id="delete">DEL</button>
+                <button class="operators" id="clear">AC</button>
+                <button class="operators" value="4" id="four">4</button>
+                <button class="operators" value="5" id="five">5</button>
+                <button class="operators" value="6" id="six">6</button>
+                <button class="operators" id="multiply">x</button>
+                <button class="operators" id="divide">÷</button>
+                <button class="operators" value="1" id="one">1</button>
+                <button class="operators" value="2" id="two">2</button>
+                <button class="operators" value="3" id="three">3</button>
+                <button class="operators" id="add">+</button>
+                <button class="operators" id="subtract">-</button>
+                <button class="operators" value="0" id="zero">0</button>
+                <button class="operators" id="decimal">.</button>
+                <button class="operators" id="exponential">EXP</button>
+                <button class="operators" id="last-answer">Ans</button>
+                <button class="operators" id="result">=</button>
             </div>
         </div>
     </div>
