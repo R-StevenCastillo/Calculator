@@ -114,13 +114,14 @@ body::after {
 
 #calculator-data {
     padding: 0.5rem;
-    width: 80%;
+    width: 88%;
     border-radius: 1rem;
     font-size: 30px;
     background-color: rgb(133, 171, 115);
     color: black;
     margin-top: 15px;
     margin-bottom: 15px;
+    text-align: right;
 }
 
 #calculator-buttons {
