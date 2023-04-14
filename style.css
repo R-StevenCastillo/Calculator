@@ -133,7 +133,7 @@ body::after {
     padding: 15px 15px;
 }
 
-.operators {
+.operators, .number {
     font-size: 20px;
     padding: 2px auto;
     font-weight: bold;
@@ -146,7 +146,7 @@ body::after {
     border-radius: 15px;
 }
 
-.operators:hover {
+.operators:hover, .number:hover {
     background-color: aliceblue;
     color: black;
     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
