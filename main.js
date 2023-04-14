@@ -35,7 +35,6 @@ function sum() {
         arrFirstNumb.push(formatSum);
         resultDisplay.setAttribute('value', formatSum);
     }
-
 }
 
 function subtract() {
@@ -74,12 +73,12 @@ function divide() {
     if  (divisor === 0) { resultDisplay.setAttribute('value', mathError)}
     else {
 
-        let divide = parseFloat(separatedArray[10]) / divisor;
+        let divide = parseFloat(separatedArray[0]) / divisor;
         
         if (isNaN(divide)) {
             resultDisplay.setAttribute('value', error);
         } else {
-            let formatDivision = divide.toFixed(8).replace(/\.?0+$/, '');
+            let formatDivision = divide.toFixed(10).replace(/\.?0+$/, '');
             arrFirstNumb = [];
             arrFirstNumb.push(formatDivision);
             resultDisplay.setAttribute('value', formatDivision);
@@ -121,7 +120,14 @@ btnClear.addEventListener('click', function() {
     reset()
 });
 
-btnDelete.addEventListener('click', reset)
+//Disable decimal button (This is not allowed => 12.12.12.12 x 12.12.12 0.0)
+//Add a way to make operation more dinamic, like 12 + 3 = 15 - 5 = 10 * 2 = 20 / 5 = 2
+
+btnDelete.addEventListener('click', function() {
+    arrFirstNumb.pop();
+    numb = arrFirstNumb.join("");
+    resultDisplay.setAttribute('value', numb);
+});
 
 function reset() {
     numb = 0;
