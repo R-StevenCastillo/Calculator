@@ -1,7 +1,5 @@
 const btnDelete = document.getElementById("delete");
 const btnClear = document.getElementById("clear");
-const btnDecimal = document.getElementById("decimal");
-const btnExp = document.getElementById("exponential");
 const btnLastAns = document.getElementById("last-answer");
 const btnGetResult = document.getElementById("result");
 const resultDisplay = document.getElementById("calculator-data")
@@ -23,7 +21,6 @@ function writeNumber(dataFromButton) {
 
 function writeOperator(operatorFromBtn) {
     operator = operatorFromBtn.value;
-    console.log(operator);
 }
 
 function sum() {
@@ -33,9 +30,10 @@ function sum() {
     if (isNaN(sum)) {
         resultDisplay.setAttribute('value', error);
     } else {
+        let formatSum = sum.toFixed(10).replace(/\.?0+$/, '');
         arrFirstNumb = [];
-        arrFirstNumb.push(sum);
-        resultDisplay.setAttribute('value', sum);
+        arrFirstNumb.push(formatSum);
+        resultDisplay.setAttribute('value', formatSum);
     }
 
 }
@@ -47,9 +45,10 @@ function subtract() {
     if (isNaN(sub)) {
         resultDisplay.setAttribute('value', error);
     } else {
+        let formatSub = sub.toFixed(10).replace(/\.?0+$/, '');
         arrFirstNumb = [];
-        arrFirstNumb.push(sub);
-        resultDisplay.setAttribute('value', sub);
+        arrFirstNumb.push(formatSub);
+        resultDisplay.setAttribute('value', formatSub);
     }
 }
 
@@ -60,9 +59,10 @@ function multiply() {
     if (isNaN(multiply)) {
         resultDisplay.setAttribute('value', error);
     } else {
+        let formatMultiply = multiply.toFixed(10).replace(/\.?0+$/, '');
         arrFirstNumb = [];
-        arrFirstNumb.push(multiply);
-        resultDisplay.setAttribute('value', multiply);
+        arrFirstNumb.push(formatMultiply);
+        resultDisplay.setAttribute('value', formatMultiply);
     }
 }
 
@@ -74,14 +74,15 @@ function divide() {
     if  (divisor === 0) { resultDisplay.setAttribute('value', mathError)}
     else {
 
-        let divide = parseFloat(separatedArray[0]) / divisor;
+        let divide = parseFloat(separatedArray[10]) / divisor;
         
         if (isNaN(divide)) {
             resultDisplay.setAttribute('value', error);
         } else {
+            let formatDivision = divide.toFixed(8).replace(/\.?0+$/, '');
             arrFirstNumb = [];
-            arrFirstNumb.push(divide);
-            resultDisplay.setAttribute('value', divide);
+            arrFirstNumb.push(formatDivision);
+            resultDisplay.setAttribute('value', formatDivision);
         }
     }
 }
@@ -90,20 +91,25 @@ function powerOfTen() {
     separatedArray = numb.split('E');
     exPowerTen = Math.pow(10, parseFloat(separatedArray[0]));
     console.log(exPowerTen);
-    resultDisplay.setAttribute('value', exPowerTen);
+    arrFirstNumb = [];
+    arrFirstNumb.push(exPowerTen.toFixed(8));
+    resultDisplay.setAttribute('value', exPowerTen.toFixed(8));
 }
 
+const operations = {
+    "+": sum,
+    "-": subtract,
+    "x": multiply,
+    "÷": divide,
+    "E": powerOfTen
+};
+
 function operation() {
-    if (operator === "+") {
-        sum();
-    } else if (operator === "-") {
-        subtract();
-    } else if (operator === "x") {
-        multiply();
-    } else if (operator === "÷") {
-        divide();
-    } else if (operator === "E") {
-        powerOfTen();
+    const operationFunction = operations[operator];
+    if (operationFunction) {
+        operationFunction()
+    } else {
+        resultDisplay.setAttribute('value', error);
     }
 }
 
